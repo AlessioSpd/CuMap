@@ -7,4 +7,22 @@ import { Component } from '@angular/core';
 })
 export class HomePageComponent {
 
+  layers = [
+    {
+      checked: true,
+      name: "Roma",
+      markers: [
+        {nome: "Romanè"},
+        {nome: "Romanè"},
+        {nome: "Romanè"}
+      ]
+    },
+    {
+      checked: true,
+      name: "Cosenza",
+      markers: [
+        {nome: "Romanè"}
+      ]
+    }
+  ];
 }

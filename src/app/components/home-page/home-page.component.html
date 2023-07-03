@@ -35,4 +35,26 @@
             <div class="sideBarContainer__tools__rightButtons__shareButton"></div>
         </div>
     </div>
+    <div class="sideBarContainer__layer" *ngFor="let layer of layers">
+        <div class="sideBarContainer__layer__layerInfo">
+            <div class="sideBarContainer__layer__layerInfo__checkName">
+                <div class="sideBarContainer__layer__layerInfo__checkName--checkBox"
+                    [ngStyle]="{'background-image': layer.checked ? 'url(\'../../../assets/icons/check.png\')' : 'url(\'../../../assets/icons/blank-check-box.png\')'}"
+                ></div>
+                <div class="sideBarContainer__layer__layerInfo__checkName--layerName">{{layer.name}}</div>
+            </div>
+            <div class="sideBarContainer__layer__layerInfo--layerMenu"></div>
+        </div>
+        <div class="sideBarContainer__layer__markerList" *ngFor="let marker of layer.markers">
+            <div class="sideBarContainer__layer__markerList__markerName">
+                <div class="sideBarContainer__layer__markerList__markerName--icon"></div>
+                <div class="sideBarContainer__layer__markerList__markerName--markerName">{{marker.nome}}</div>
+            </div>
+            <div class="sideBarContainer__layer__markerList--deleteMarkerButton"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modalContainer">
+    <div class="modalContainer__newLayerModal"></div>
 </div>

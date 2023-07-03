@@ -8,13 +8,11 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     font-family: Inter;
-    // background-color: red;
 
     & > * {
         border-radius: 20px;
-        // width: 340px;
     }
 
     &__mapInfo {
@@ -25,7 +23,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        box-shadow: -11px 9px 0px 0px $primary_color_shadow;
+        box-shadow: $box_shadow_down;
         
         & > * {
             width: 85%;
@@ -223,5 +221,127 @@
                 margin-right: 25px;
             }
         }
+    }
+
+    &__layer {
+        margin-top: 20px;
+        height: auto;
+        width: 340px;
+        background-color: $primary_color;
+        box-shadow: $box_shadow_up;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+
+        & > * {
+            width: 85%;
+        }
+
+        &__layerInfo {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: solid 1px rgba(0, 0, 0, 0.267);
+
+            &__checkName {
+                height: 100%;
+                width: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+
+                &--checkBox {
+                    width: 20px;
+                    height: 20px;
+                    background-image: url("../../../assets/icons/check.png");
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center;
+                }
+
+                &--layerName {
+                    font-weight: 700;
+                }
+            }
+
+            &--layerMenu {
+                width: 20px;
+                height: 20px;
+                background-image: url("../../../assets/icons/menus.png");
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: bottom;
+            }
+        }
+
+        &__markerList {
+            height: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &:nth-last-child(1) {
+                margin-bottom: 20px;
+            }
+
+            &__markerName {
+                width: auto;
+                height: 24px;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                &--icon {
+                    height: 20px;
+                    width: 20px;
+                    background-image: url('../../../assets/icons/marker.png');
+                    background-position: cover;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    display: flex;
+                }
+
+                &--markerName {
+                    font-family: Spartan;
+                    font-weight: 400;
+                    letter-spacing: 1.5px;
+                }
+            }
+
+            &--deleteMarkerButton {
+                height: 12px;
+                width: 12px;
+                background-image: url('../../../assets/icons/close.png');
+                background-position: contain;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+        }
+    }
+}
+
+
+.modalContainer {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    // display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgba(0, 0, 0, 0.452);
+    backdrop-filter: blur(2px);
+
+    &__newLayerModal {
+        display: none;
+        margin-top: 30px;
+        width: 300px;
+        height: 100px;
+        background-color: $primary_color;
+        border-radius: 20px;
+        box-shadow: -11px 9px 0px 0px rgba(0, 0, 0, 0.479);
     }
 }

@@ -1,3 +1,5 @@
 $primary_color: #D7F5FF;
 $secondary_color: #262E32;
 $primary_color_shadow: rgba(38,46,50,0.7);
+$box_shadow_down: -6px 6px 0px 0px $primary_color_shadow;
+$box_shadow_up: -6px -6px 0px 0px $primary_color_shadow;
