@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: SpartanFont;
+    src: url(/assets/fonts/LeagueSpartan-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(/assets/fonts/Inter-VariableFont_slnt_wght.ttf);
+}
