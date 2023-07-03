@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IMap, ILayer, IMarker } from '../model/Map.model';
 
 @Component({
   selector: 'app-home-page',
@@ -7,22 +8,21 @@ import { Component } from '@angular/core';
 })
 export class HomePageComponent {
 
-  layers = [
-    {
+  currentMap :IMap = new IMap(
+    "Pam4k4",
+    "Alessio's map",
+    [],
+    0,
+    "11.23 PM"
+  );
+
+  newLayer() {
+    let layer = {
+      name: "New layer",
       checked: true,
-      name: "Roma",
-      markers: [
-        {nome: "Romanè"},
-        {nome: "Romanè"},
-        {nome: "Romanè"}
-      ]
-    },
-    {
-      checked: true,
-      name: "Cosenza",
-      markers: [
-        {nome: "Romanè"}
-      ]
+      markers: []
     }
-  ];
+
+    this.currentMap.layers.push(layer);
+  }
 }

@@ -3,8 +3,8 @@
     <div class="sideBarContainer__mapInfo">
         <div class="sideBarContainer__mapInfo__userInfo">
             <div class="sideBarContainer__mapInfo__userInfo__titleContainer">
-                <div class="sideBarContainer__mapInfo__userInfo__titleContainer--mapName">My first map</div>
-                <div class="sideBarContainer__mapInfo__userInfo__titleContainer--userName">by Pam4k4</div>
+                <div class="sideBarContainer__mapInfo__userInfo__titleContainer--mapName">{{currentMap.map_name}}</div>
+                <div class="sideBarContainer__mapInfo__userInfo__titleContainer--userName">by {{currentMap.owner}}</div>
             </div>
             <div class="sideBarContainer__mapInfo__userInfo__photoContainer">
                 <div class="sideBarContainer__mapInfo__userInfo__photoContainer--proPic"></div>
@@ -17,8 +17,8 @@
                 <div class="sideBarContainer__mapInfo__linkViews--socialLink--telegramIcon"></div>
             </div>
             <div class="sideBarContainer__mapInfo__linkViews--viewsCheck">
-                <div class="sideBarContainer__mapInfo__linkViews--viewsCheck--viewsCount">31 views</div>
-                <div class="sideBarContainer__mapInfo__linkViews--viewsCheck--lastCheck">last check was at 11.32 PM</div>
+                <div class="sideBarContainer__mapInfo__linkViews--viewsCheck--viewsCount">{{currentMap.views}} views</div>
+                <div class="sideBarContainer__mapInfo__linkViews--viewsCheck--lastCheck">last check was at {{currentMap.last_check}}</div>
             </div>
         </div>
     </div>
@@ -28,29 +28,31 @@
         </div>
         <div class="sideBarContainer__tools__leftButtons">
             <div class="sideBarContainer__tools__leftButtons__addMarkerButton"></div>
-            <div class="sideBarContainer__tools__leftButtons__addLayerButton"></div>
+            <div class="sideBarContainer__tools__leftButtons__addLayerButton" (click)="newLayer()"></div>
         </div>
         <div class="sideBarContainer__tools__rightButtons">
             <div class="sideBarContainer__tools__rightButtons__previewButton"></div>
             <div class="sideBarContainer__tools__rightButtons__shareButton"></div>
         </div>
     </div>
-    <div class="sideBarContainer__layer" *ngFor="let layer of layers">
-        <div class="sideBarContainer__layer__layerInfo">
-            <div class="sideBarContainer__layer__layerInfo__checkName">
-                <div class="sideBarContainer__layer__layerInfo__checkName--checkBox"
-                    [ngStyle]="{'background-image': layer.checked ? 'url(\'../../../assets/icons/check.png\')' : 'url(\'../../../assets/icons/blank-check-box.png\')'}"
-                ></div>
-                <div class="sideBarContainer__layer__layerInfo__checkName--layerName">{{layer.name}}</div>
+    <div class="sideBarContainer__layerContainer">
+        <div class="sideBarContainer__layerContainer__layer" *ngFor="let layer of currentMap.layers">
+            <div class="sideBarContainer__layerContainer__layer__layerInfo" [ngStyle]="{'border-bottom': (layer.markers.length == 0) ? 'none' : 'solid 1px rgba(0, 0, 0, 0.267)'}">
+                <div class="sideBarContainer__layerContainer__layer__layerInfo__checkName">
+                    <div class="sideBarContainer__layerContainer__layer__layerInfo__checkName--checkBox"
+                        [ngStyle]="{'background-image': layer.checked ? 'url(\'../../../assets/icons/check.png\')' : 'url(\'../../../assets/icons/blank-check-box.png\')'}"
+                    ></div>
+                    <div class="sideBarContainer__layerContainer__layer__layerInfo__checkName--layerName" contenteditable="true">{{layer.name}}</div>
+                </div>
+                <div class="sideBarContainer__layerContainer__layer__layerInfo--layerMenu"></div>
             </div>
-            <div class="sideBarContainer__layer__layerInfo--layerMenu"></div>
-        </div>
-        <div class="sideBarContainer__layer__markerList" *ngFor="let marker of layer.markers">
-            <div class="sideBarContainer__layer__markerList__markerName">
-                <div class="sideBarContainer__layer__markerList__markerName--icon"></div>
-                <div class="sideBarContainer__layer__markerList__markerName--markerName">{{marker.nome}}</div>
+            <div class="sideBarContainer__layerContainer__layer__markerList" *ngFor="let marker of layer.markers">
+                <div class="sideBarContainer__layerContainer__layer__markerList__markerName">
+                    <div class="sideBarContainer__layerContainer__layer__markerList__markerName--icon"></div>
+                    <div class="sideBarContainer__layerContainer__layer__markerList__markerName--markerName">{{marker.name}}</div>
+                </div>
+                <div class="sideBarContainer__layerContainer__layer__markerList--deleteMarkerButton"></div>
             </div>
-            <div class="sideBarContainer__layer__markerList--deleteMarkerButton"></div>
         </div>
     </div>
 </div>
