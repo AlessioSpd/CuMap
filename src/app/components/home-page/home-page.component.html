@@ -44,7 +44,7 @@
                     ></div>
                     <div class="sideBarContainer__layerContainer__layer__layerInfo__checkName--layerName" contenteditable="true">{{layer.name}}</div>
                 </div>
-                <div class="sideBarContainer__layerContainer__layer__layerInfo--layerMenu"></div>
+                <div class="sideBarContainer__layerContainer__layer__layerInfo--deleteLayer" (click)="deleteLayer(layer.id)"></div>
             </div>
             <div class="sideBarContainer__layerContainer__layer__markerList" *ngFor="let marker of layer.markers">
                 <div class="sideBarContainer__layerContainer__layer__markerList__markerName">

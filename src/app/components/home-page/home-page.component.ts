@@ -13,16 +13,25 @@ export class HomePageComponent {
     "Alessio's map",
     [],
     0,
+    0,
     "11.23 PM"
   );
 
   newLayer() {
+
     let layer = {
+      id: this.currentMap.getLayersNumber()+1,
       name: "New layer",
       checked: true,
       markers: []
     }
 
-    this.currentMap.layers.push(layer);
+    this.currentMap.addNewLayer(layer);
+    console.log(layer);
+  }
+
+  deleteLayer(id: number) {
+    console.log("sto per eliminare la lista " + id)
+    this.currentMap.deleteLayerById(id);
   }
 }
