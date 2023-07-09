@@ -57,6 +57,4 @@
     </div>
 </div>
 
-<div class="modalContainer" *ngIf="toggleModal">
-    <div class="modalContainer__newLayerModal"></div>
-</div>
+<app-new-marker-modal [toggleModal]="toggleModal" (closeModalEvent)="closeModal($event)"></app-new-marker-modal>

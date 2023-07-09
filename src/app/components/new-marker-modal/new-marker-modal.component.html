@@ -1,0 +1,19 @@
+<div class="modalContainer" *ngIf="toggleModal">
+    <div class="modalContainer__newLayerModal">
+        <div class="modalContainer__newLayerModal__layerTitleContainer">
+            <input type="text" placeholder="Come on, give it a name!">
+        </div>
+        <div class="modalContainer__newLayerModal__layerDescriptionContainer">
+            <textarea placeholder="Insert optional marker description..."></textarea>
+        </div>
+        <div class="modalContainer__newLayerModal__confirmModalButtonsContainer">
+            <div class="modalContainer__newLayerModal__confirmModalButtonsContainer--saveButton">
+                <label>Save</label>
+            </div>
+            <div class="modalContainer__newLayerModal__confirmModalButtonsContainer--cancelButton"
+            (click)="closeModal()">
+                <label>Cancel</label>
+            </div>
+        </div>
+    </div>
+</div>

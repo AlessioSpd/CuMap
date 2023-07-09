@@ -17,7 +17,7 @@ export class HomePageComponent {
     "11.23 PM"
   );
 
-  toggleModal:boolean = false;
+  toggleModal: boolean = false;
 
   newLayer() {
 
@@ -40,5 +40,9 @@ export class HomePageComponent {
   newMarker(marker: IMarker) {
     this.toggleModal=!this.toggleModal;
     console.log(marker);
+  }
+
+  closeModal(modal: boolean) {
+    this.toggleModal= !this.toggleModal;
   }
 }

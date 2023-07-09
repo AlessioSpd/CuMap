@@ -1,0 +1,98 @@
+@import "../../../assets/styles/const-style.scss";
+
+.modalContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgba(0, 0, 0, 0.452);
+    backdrop-filter: blur(2px);
+    font-family: Spartan;
+
+    &__newLayerModal {
+        margin-top: 30px;
+        width: 470px;
+        height: 230px;
+        background-color: $primary_color;
+        border-radius: 20px;
+        box-shadow: -11px 9px 0px 0px rgba(0, 0, 0, 0.479);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & > * {
+            width: 85%;
+        }
+
+        &__layerTitleContainer {
+            height: 70px;
+            border-bottom: solid 2px rgba(0, 0, 0, 0.514);
+            font-size: 27px;
+            display: flex;
+            justify-content: flex-start;
+            
+            & > input {
+                width: 90%;
+                height: auto;
+                background: none;
+                outline: none;
+                border: none;
+                font-size: 31px;
+                font-family: Spartan;
+                font-weight: 300;
+                padding-left: 10px;
+                padding-top: 25px;
+            }
+        }
+
+        &__layerDescriptionContainer {
+            height: 115px;
+
+            & > textarea {
+                width: 100%;
+                height: 100%;
+                background: none;
+                outline: none;
+                border: none;
+                text-align: left;
+                resize: none;
+                font-family: Spartan;
+                font-size: 19px;
+                font-weight: 300;
+                margin-top: 24px;
+            }
+        }
+
+        &__confirmModalButtonsContainer { 
+            height: 45px;
+            display: flex;
+            gap: 5px;
+
+            & > * {
+                border-radius: 9px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 16px;
+            }
+
+            &--saveButton {
+                width: 90px;
+                height: 30px;
+                background-color: $secondary_color;
+                color: $primary_color;
+                font-weight: 300;
+            }
+
+            &--cancelButton {
+                width: 86px;
+                height: 26px;
+                border: 2px solid $secondary_color;
+                background: none;
+                color: $secondary_color;
+            }
+        }
+    }
+}
