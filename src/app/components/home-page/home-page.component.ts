@@ -18,6 +18,7 @@ export class HomePageComponent {
   );
 
   toggleModal: boolean = false;
+  activedLayer: number = -1;
 
   newLayer() {
 
@@ -44,5 +45,10 @@ export class HomePageComponent {
 
   closeModal(modal: boolean) {
     this.toggleModal= !this.toggleModal;
+  }
+
+  selectLayer(layer: ILayer) {
+    this.activedLayer = layer.id
+    console.log(layer)
   }
 }

@@ -36,7 +36,11 @@
         </div>
     </div>
     <div class="sideBarContainer__layerContainer">
-        <div class="sideBarContainer__layerContainer__layer" *ngFor="let layer of currentMap.layers">
+        <div class="sideBarContainer__layerContainer__layer"
+            *ngFor="let layer of currentMap.layers"
+            (click)="selectLayer(layer)"
+            [ngStyle]="{'margin-left': (layer.id===activedLayer) ? '65px': '40px'}"
+        >
             <div class="sideBarContainer__layerContainer__layer__layerInfo" [ngStyle]="{'border-bottom': (layer.markers.length == 0) ? 'none' : 'solid 1px rgba(0, 0, 0, 0.267)'}">
                 <div class="sideBarContainer__layerContainer__layer__layerInfo__checkName">
                     <div class="sideBarContainer__layerContainer__layer__layerInfo__checkName--checkBox"
