@@ -38,14 +38,21 @@ export class IMap {
 
     getLayersNumber() : number { return this.numberOfLayer};
     
-    addNewLayer(newLayer: ILayer) {
+    addNewLayer(newLayer: ILayer): ILayer[] {
         this.layers.push(newLayer);
         this.numberOfLayer += 1;
+        return this.layers
     }
 
     deleteLayerById(id: number) {
         this.layers = this.layers.filter(function (obj) {
             return obj.id !== id;
+        })
+    }
+
+    addNewMarkerAtLayer(marker: IMarker, layer_id: number) {
+        this.layers.map( layer => {
+            if(layer.id===layer_id) layer.markers.push(marker)
         })
     }
 }

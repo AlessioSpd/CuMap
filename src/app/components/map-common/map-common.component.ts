@@ -1,19 +1,26 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import { IMarker } from '../model/Map.model';
+import { ILayer, IMarker } from '../model/Map.model';
+import { Observable, Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-map-common',
   templateUrl: './map-common.component.html',
   styleUrls: ['./map-common.component.scss']
 })
-export class MapCommonComponent implements OnInit{
+export class MapCommonComponent implements OnInit, OnDestroy{
 
   existingPoint: mapboxgl.Marker[] = [];
   count: number = 0;
 
   @Output() newMarkerEmitter = new EventEmitter<IMarker>();
   
+  private _eventsSubscription!: Subscription;
+  private _mapMarkers!: IMarker[];
+  
+  @Input() markerLayersEventHandler!: Observable<IMarker>;
+  mapLayer!: IMarker;
+
   ngOnInit(): void {
 
     (mapboxgl as typeof mapboxgl).accessToken = 'pk.eyJ1IjoicGFtNGs0IiwiYSI6ImNsamxzbmpkNTB6Y2szZXBwdWh1dngwZ3QifQ.kR2_3RYgq9JBYLoHQ7GkeA';
@@ -35,25 +42,22 @@ export class MapCommonComponent implements OnInit{
       }
       
       this.newMarkerEmitter.emit(newMarkerPosition);
-
-      // console.log(long + " - " + lat)
-  
-      // this.existingPoint.push(new mapboxgl.Marker()
-      //     .setLngLat([long , lat])
-      //     .addTo(map)
-      // )
-  
-      // console.log(this.existingPoint)
-      // this.count = this.count + 1;
-      // console.log(this.count);
-      // if(this.count == 4) {
-      //   this.existingPoint.map(el=>{el.remove()});
-      //   this.count = 0;
-      // }
-
-
     });
 
+    this._mapMarkers = [];
+
+    this._eventsSubscription = this.markerLayersEventHandler.subscribe((value) =>{
+      this._mapMarkers.push(value);
+      new mapboxgl.Marker()
+          .setLngLat([value.lng , value.lat])
+          .addTo(map)
+    })
   }
+
+  ngOnDestroy(): void {
+    this._eventsSubscription.unsubscribe();
+  }
+
+  updateMap() {}
 
 }

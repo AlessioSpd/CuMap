@@ -1,4 +1,8 @@
-<app-map-common (newMarkerEmitter)="newMarker($event)"></app-map-common>
+<app-map-common
+    (newMarkerEmitter)="newMarker($event)"
+    [markerLayersEventHandler]="updateLayerEvent.asObservable()"
+></app-map-common>
+
 <div class="sideBarContainer">
     <div class="sideBarContainer__mapInfo">
         <div class="sideBarContainer__mapInfo__userInfo">
@@ -61,4 +65,9 @@
     </div>
 </div>
 
-<app-new-marker-modal [toggleModal]="toggleModal" (closeModalEvent)="closeModal($event)"></app-new-marker-modal>
+<app-new-marker-modal
+    [toggleModal]="toggleModal"
+    [newMarkerInfo]="tempNewMarker"
+    (closeModalEvent)="closeModal($event)"
+    (saveMarkerEvent)="saveMarkEvent($event)"
+></app-new-marker-modal>

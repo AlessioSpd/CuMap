@@ -82,8 +82,14 @@
                 width: 90px;
                 height: 30px;
                 background-color: $secondary_color;
+                border: none;
+                outline: none;
                 color: $primary_color;
                 font-weight: 300;
+
+                &:disabled {
+                    opacity: 30%;
+                }
             }
 
             &--cancelButton {

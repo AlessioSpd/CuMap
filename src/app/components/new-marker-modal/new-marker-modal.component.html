@@ -1,19 +1,22 @@
 <div class="modalContainer" *ngIf="toggleModal">
     <div class="modalContainer__newLayerModal">
-        <div class="modalContainer__newLayerModal__layerTitleContainer">
-            <input type="text" placeholder="Come on, give it a name!">
-        </div>
-        <div class="modalContainer__newLayerModal__layerDescriptionContainer">
-            <textarea placeholder="Insert optional marker description..."></textarea>
-        </div>
-        <div class="modalContainer__newLayerModal__confirmModalButtonsContainer">
-            <div class="modalContainer__newLayerModal__confirmModalButtonsContainer--saveButton">
-                <label>Save</label>
+        <form [formGroup]="markerForm" (ngSubmit)="saveMarker()">
+            <div class="modalContainer__newLayerModal__layerTitleContainer">
+                <input type="text" placeholder="Come on, give it a name!" formControlName="markerName">
             </div>
-            <div class="modalContainer__newLayerModal__confirmModalButtonsContainer--cancelButton"
-            (click)="closeModal()">
-                <label>Cancel</label>
+            <div class="modalContainer__newLayerModal__layerDescriptionContainer">
+                <textarea placeholder="Insert optional marker description..." formControlName="markerDescription"></textarea>
             </div>
-        </div>
+            <div class="modalContainer__newLayerModal__confirmModalButtonsContainer">
+                <button class="modalContainer__newLayerModal__confirmModalButtonsContainer--saveButton"
+                    type="submit"
+                    [disabled]="!markerForm.valid"
+                >Save</button>
+                <div class="modalContainer__newLayerModal__confirmModalButtonsContainer--cancelButton"
+                (click)="closeModal()">
+                    <label>Cancel</label>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
