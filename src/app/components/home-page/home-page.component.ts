@@ -17,6 +17,8 @@ export class HomePageComponent {
     "11.23 PM"
   );
 
+  toggleModal:boolean = false;
+
   newLayer() {
 
     let layer = {
@@ -33,5 +35,10 @@ export class HomePageComponent {
   deleteLayer(id: number) {
     console.log("sto per eliminare la lista " + id)
     this.currentMap.deleteLayerById(id);
+  }
+
+  newMarker(marker: IMarker) {
+    this.toggleModal=!this.toggleModal;
+    console.log(marker);
   }
 }

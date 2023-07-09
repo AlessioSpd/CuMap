@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
+import { IMarker } from '../model/Map.model';
 
 @Component({
   selector: 'app-map-common',
@@ -10,6 +11,8 @@ export class MapCommonComponent implements OnInit{
 
   existingPoint: mapboxgl.Marker[] = [];
   count: number = 0;
+
+  @Output() newMarkerEmitter = new EventEmitter<IMarker>();
   
   ngOnInit(): void {
 
@@ -24,23 +27,31 @@ export class MapCommonComponent implements OnInit{
     });
 
     map.on('click', (e) => {
-      let long = e.lngLat.wrap()['lng']
-      let lat = e.lngLat.wrap()['lat']
-      
-      console.log(long + " - " + lat)
-  
-      this.existingPoint.push(new mapboxgl.Marker()
-          .setLngLat([long , lat])
-          .addTo(map)
-      )
-  
-      console.log(this.existingPoint)
-      this.count = this.count + 1;
-      console.log(this.count);
-      if(this.count == 4) {
-        this.existingPoint.map(el=>{el.remove()});
-        this.count = 0;
+      let newMarkerPosition: IMarker = {
+        name: "",
+        lng: e.lngLat.wrap()['lng'],
+        lat: e.lngLat.wrap()['lat'],
+        description: ""
       }
+      
+      this.newMarkerEmitter.emit(newMarkerPosition);
+
+      // console.log(long + " - " + lat)
+  
+      // this.existingPoint.push(new mapboxgl.Marker()
+      //     .setLngLat([long , lat])
+      //     .addTo(map)
+      // )
+  
+      // console.log(this.existingPoint)
+      // this.count = this.count + 1;
+      // console.log(this.count);
+      // if(this.count == 4) {
+      //   this.existingPoint.map(el=>{el.remove()});
+      //   this.count = 0;
+      // }
+
+
     });
 
   }

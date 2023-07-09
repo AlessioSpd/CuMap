@@ -1,4 +1,4 @@
-<app-map-common></app-map-common>
+<app-map-common (newMarkerEmitter)="newMarker($event)"></app-map-common>
 <div class="sideBarContainer">
     <div class="sideBarContainer__mapInfo">
         <div class="sideBarContainer__mapInfo__userInfo">
@@ -57,6 +57,6 @@
     </div>
 </div>
 
-<div class="modalContainer">
+<div class="modalContainer" *ngIf="toggleModal">
     <div class="modalContainer__newLayerModal"></div>
 </div>
