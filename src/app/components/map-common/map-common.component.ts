@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output, Input, OnChanges, SimpleChange
 import * as mapboxgl from 'mapbox-gl';
 import { ILayer, IMarker } from '../model/Map.model';
 import { Observable, Subscription } from 'rxjs'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { LatLngTuple, decode } from "@googlemaps/polyline-codec";
 
 @Component({
@@ -26,7 +26,7 @@ export class MapCommonComponent implements OnInit, OnDestroy{
   map!: mapboxgl.Map;
   token = 'pk.eyJ1IjoicGFtNGs0IiwiYSI6ImNsamxzbmpkNTB6Y2szZXBwdWh1dngwZ3QifQ.kR2_3RYgq9JBYLoHQ7GkeA'
 
-  constructor(private http: HttpClientModule) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
 
@@ -59,6 +59,14 @@ export class MapCommonComponent implements OnInit, OnDestroy{
           .setLngLat([value.lng , value.lat])
           .addTo(this.map)
     })
+
+    // chiamata di suggestion della search box
+    // let stringa = 'paola'
+    // this.http.get<any>(
+    //   "https://api.mapbox.com/search/searchbox/v1/suggest?q=" + stringa + "&language=it&session_token=[GENERATED-UUID]&access_token="+this.token
+    // ).subscribe((res)=>{
+    //   console.log(res.suggestions)
+    // })
   }
 
   ngOnDestroy(): void {

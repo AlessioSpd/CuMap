@@ -15,4 +15,10 @@ export class ApiServiceService {
       "https://api.mapbox.com/directions/v5/mapbox/driving/"+ start +";"+ end +"?access_token=" + this.token
     )
   }
+
+  getSuggestion(stringa: string) {
+    return this.http.get<any>(
+      "https://api.mapbox.com/search/searchbox/v1/suggest?q="+ stringa +"&language=it&session_token=[GENERATED-UUID]&access_token="+this.token
+    )
+  }
 }

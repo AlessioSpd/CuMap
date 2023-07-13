@@ -230,8 +230,7 @@
 
     &__layerContainer {
         width: 100%;
-        min-height: 200px;
-        max-height: 60%;
+        height: 58%;
         overflow-y: scroll;
         border-radius: 15px;
         
@@ -342,6 +341,28 @@
                     background-size: contain;
                 }
             }
+        }
+    }
+
+    &__searchBarContainer {
+        height: 50px;
+        width: 340px;
+        background-color: $secondary_color;
+        margin-top: 20px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & > input {
+            color: white;
+            font-family: Spartan;
+            width: 85%;
+            height: 80%;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            font-size: 18px;
         }
     }
 }
