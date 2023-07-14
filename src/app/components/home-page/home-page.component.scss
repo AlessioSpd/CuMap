@@ -142,6 +142,7 @@
         width: 350px;
 
         &__myLocationButton {
+            cursor: pointer;
             margin-left: 33%;
             margin-bottom: 20px;
             width: 70px;
@@ -181,6 +182,7 @@
                 width: 30px;
                 height: 30px;
                 margin-left: 25px;
+                cursor: pointer;
             }
 
             &__addLayerButton {

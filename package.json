@@ -18,6 +18,7 @@
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
+    "@googlemaps/polyline-codec": "^1.0.28",
     "@types/mapbox-gl": "^2.7.11",
     "mapbox-gl": "^2.15.0",
     "rxjs": "~7.8.0",

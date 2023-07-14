@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IMap, ILayer, IMarker } from '../model/Map.model';
 import { Subject } from 'rxjs'
+import { MapCommonComponent } from '../map-common/map-common.component';
+import { ApiServiceService } from 'src/app/api_services/api-service.service';
+import { decode } from "@googlemaps/polyline-codec";
 
 @Component({
   selector: 'app-home-page',
@@ -15,6 +18,9 @@ export class HomePageComponent implements OnInit {
   tempNewMarker!: IMarker;
 
   updateLayerEvent!: Subject<IMarker>;
+  @ViewChild(MapCommonComponent) mapComp!: MapCommonComponent;
+
+  constructor(private apiServ: ApiServiceService){}
 
   ngOnInit(): void {
     this.currentMap = new IMap(
@@ -86,5 +92,16 @@ export class HomePageComponent implements OnInit {
 
   selectLayer(layer: ILayer) {
     this.activedLayer = layer.id;
+  }
+
+  getCurrentPosition() {
+    this.mapComp.getMyPosition()
+  }
+
+  newTrack(){
+    this.apiServ.getDirection('12.48545859924775,41.89214066211926','12.459240072121816,41.90602150170318').subscribe((res) => {
+      console.log(res)
+      this.mapComp.newTrack(decode(res.routes[0].geometry))
+    });
   }
 }

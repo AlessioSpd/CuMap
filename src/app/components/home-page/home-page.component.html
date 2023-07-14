@@ -27,11 +27,11 @@
         </div>
     </div>
     <div class="sideBarContainer__tools">
-        <div class="sideBarContainer__tools__myLocationButton">
+        <div class="sideBarContainer__tools__myLocationButton" (click)="getCurrentPosition()">
             <div class="sideBarContainer__tools__myLocationButton--icon"></div>
         </div>
         <div class="sideBarContainer__tools__leftButtons">
-            <div class="sideBarContainer__tools__leftButtons__addMarkerButton"></div>
+            <div class="sideBarContainer__tools__leftButtons__addMarkerButton" (click)="newTrack()"></div>
             <div class="sideBarContainer__tools__leftButtons__addLayerButton" (click)="newLayer()"></div>
         </div>
         <div class="sideBarContainer__tools__rightButtons">

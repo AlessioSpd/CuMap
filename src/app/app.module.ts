@@ -7,6 +7,7 @@ import { MapCommonComponent } from './components/map-common/map-common.component
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { NewMarkerModalComponent } from './components/new-marker-modal/new-marker-modal.component'
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
