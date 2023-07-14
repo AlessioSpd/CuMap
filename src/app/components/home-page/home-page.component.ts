@@ -18,7 +18,8 @@ export class HomePageComponent implements OnInit {
   activedLayer!: number;
   tempNewMarker!: IMarker;
   searchForm!: FormGroup;
-  testValue: string = ''
+  suggestionsResult!: {title:string, detail:string, id:string}[];
+  showSuggestionContainer!: boolean
 
   updateLayerEvent!: Subject<IMarker>;
   @ViewChild(MapCommonComponent) mapComp!: MapCommonComponent;
@@ -40,7 +41,9 @@ export class HomePageComponent implements OnInit {
     });
     
     this.toggleModal = false;
-    this.activedLayer = 1
+    this.activedLayer = 1;
+    this.suggestionsResult = [];
+    this.showSuggestionContainer = false;
 
     this.tempNewMarker = {
       name: "",
@@ -52,8 +55,22 @@ export class HomePageComponent implements OnInit {
     this.updateLayerEvent = new Subject<IMarker>();
 
     this.searchForm.controls['searchFormInput']
-      .valueChanges.subscribe(x => {
-        console.log("cambio");
+      .valueChanges.subscribe(newValue => {
+        if(newValue !== '') {
+          this.showSuggestionContainer = true;
+
+          newValue = newValue.replaceAll(' ',  '+');
+          let slice: string = newValue.match(/(.*[a-zA-Z]+)\+*/);
+          // console.log(slice[1]);          
+          this.apiServ.getSuggestion(slice[1]).subscribe((res) => {
+            this.suggestionsResult = [];
+            res.suggestions.map((sugg: { name: string; place_formatted: string; mapbox_id:string}) => {
+              this.suggestionsResult.push({title: sugg.name, detail: sugg.place_formatted, id:sugg.mapbox_id})});
+          });
+        } else {
+          this.showSuggestionContainer = false;
+          this.suggestionsResult = [];
+        }
       })
   }
 
@@ -116,7 +133,10 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  searchInput() {
-    console.log("cerco");
+  searchInput(id: string) {
+    this.searchForm.controls['searchFormInput'].setValue('');
+    this.apiServ.getPlaceFromId(id).subscribe((res) => {
+      this.mapComp.flyTo(res.features[0].geometry.coordinates[0], res.features[0].geometry.coordinates[1])
+    });
   }
 }

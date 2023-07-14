@@ -21,4 +21,10 @@ export class ApiServiceService {
       "https://api.mapbox.com/search/searchbox/v1/suggest?q="+ stringa +"&language=it&session_token=[GENERATED-UUID]&access_token="+this.token
     )
   }
+
+  getPlaceFromId(id: string) {
+    return this.http.get<any>(
+      "https://api.mapbox.com/search/searchbox/v1/retrieve/" + id + "?session_token=[GENERATED-UUID]&access_token=" + this.token
+    )
+  }
 }

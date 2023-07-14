@@ -59,14 +59,6 @@ export class MapCommonComponent implements OnInit, OnDestroy{
           .setLngLat([value.lng , value.lat])
           .addTo(this.map)
     })
-
-    // chiamata di suggestion della search box
-    // let stringa = 'paola'
-    // this.http.get<any>(
-    //   "https://api.mapbox.com/search/searchbox/v1/suggest?q=" + stringa + "&language=it&session_token=[GENERATED-UUID]&access_token="+this.token
-    // ).subscribe((res)=>{
-    //   console.log(res.suggestions)
-    // })
   }
 
   ngOnDestroy(): void {
@@ -83,7 +75,7 @@ export class MapCommonComponent implements OnInit, OnDestroy{
           center: [position.coords.longitude, position.coords.latitude],
           zoom: 16,
           essential: true // this animation is considered essential with respect to prefers-reduced-motion
-          });
+        });
       }, 
       () => {}, 
       {enableHighAccuracy:true}
@@ -119,5 +111,13 @@ export class MapCommonComponent implements OnInit, OnDestroy{
         'line-width': 8
         }
     })
+  }
+
+  flyTo(lng:number, lat:number) {
+    this.map.flyTo({
+      center: [lng, lat],
+      zoom: 12,
+      essential: true // this animation is considered essential with respect to prefers-reduced-motion
+    });
   }
 }
