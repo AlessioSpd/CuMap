@@ -65,9 +65,17 @@
     </div>
     
     <div class="sideBarContainer__searchBarContainer">
-        <input type="text" placeholder="Search your favourite public toilette...">
+        <form [formGroup]="searchForm" (ngSubmit)="searchInput()">
+            <input
+                class="sideBarContainer__searchBarContainer__searchInput"
+                type="text"
+                placeholder="Search your favourite public toilette..."
+                formControlName="searchFormInput"
+            >
+        </form>
     </div>
 
+    <div class="sideBarContainer__suggestionContainer">{{testValue}}</div>
 </div>
 
 <app-new-marker-modal

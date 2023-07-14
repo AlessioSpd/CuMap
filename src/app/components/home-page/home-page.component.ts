@@ -4,6 +4,7 @@ import { Subject } from 'rxjs'
 import { MapCommonComponent } from '../map-common/map-common.component';
 import { ApiServiceService } from 'src/app/api_services/api-service.service';
 import { decode } from "@googlemaps/polyline-codec";
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
@@ -16,6 +17,8 @@ export class HomePageComponent implements OnInit {
   toggleModal!: boolean;
   activedLayer!: number;
   tempNewMarker!: IMarker;
+  searchForm!: FormGroup;
+  testValue: string = ''
 
   updateLayerEvent!: Subject<IMarker>;
   @ViewChild(MapCommonComponent) mapComp!: MapCommonComponent;
@@ -25,12 +28,16 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.currentMap = new IMap(
       "Pam4k4",
-    "Alessio's map",
-    [],
-    0,
-    0,
-    "11.23 PM"
+      "Alessio's map",
+      [],
+      0,
+      0,
+      "11.23 PM"
     );
+
+    this.searchForm = new FormGroup({
+      searchFormInput: new FormControl('')
+    });
     
     this.toggleModal = false;
     this.activedLayer = 1
@@ -44,6 +51,10 @@ export class HomePageComponent implements OnInit {
     
     this.updateLayerEvent = new Subject<IMarker>();
 
+    this.searchForm.controls['searchFormInput']
+      .valueChanges.subscribe(x => {
+        console.log("cambio");
+      })
   }
 
   emitEventToChild(marker: IMarker) {
@@ -103,5 +114,9 @@ export class HomePageComponent implements OnInit {
       console.log(res)
       this.mapComp.newTrack(decode(res.routes[0].geometry))
     });
+  }
+
+  searchInput() {
+    console.log("cerco");
   }
 }
